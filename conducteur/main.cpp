@@ -47,9 +47,7 @@ int main(int argc, const char * argv[]) {
             std::cout << "looper " << i << " launched " << std::endl;
         }
     }else{
-        
-        
-        
+        std::cout << "There is nothing to do here.." << std::endl;
     }
     
     return 0;
