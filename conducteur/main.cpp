@@ -29,8 +29,8 @@ int main(int argc, const char * argv[]) {
     
     // Let's SET engine_status pull_interval stock_count
     engine_status = R[0]["engine_status"].as<bool>();
-    pull_interval = R[0]["pull_interval"];
-    stock_count = R[0]["stock_count"];
+    pull_interval = R[0]["pull_interval"].as<int>();
+    stock_count = R[0]["stock_count"].as<int>();
     std::cout << "Engine Status:" << engine_status << std::endl;
     std::cout << "Pull Interval:" << pull_interval << std::endl;
     std::cout << "Stock Count:" << stock_count << std::endl;
