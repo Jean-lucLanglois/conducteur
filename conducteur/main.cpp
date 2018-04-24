@@ -13,7 +13,7 @@
 
 int main(int argc, const char * argv[]) {
     
-    const int RECORDS_PER_BATCH = 300;
+    const int RECORDS_PER_BATCH = 300  ;
     const std::string CONN_STRING = "user=instigator_app  host=jeanluc-db.c0hxc3wgxzra.us-east-1.rds.amazonaws.com  password=zfszsT38ED  dbname=instigator";
     bool engine_status = false;
     int pull_interval = 0;
@@ -37,8 +37,8 @@ int main(int argc, const char * argv[]) {
     
     
     // Let's figure out how many looper to spawn
-    // make sure we have stocks to pull and that the engine is started
-    if (stock_count > 0 && engine_status > 0) {
+    // make sure we have stocks to pull
+    if (stock_count > 0) {
         int looper_spawn_count = (stock_count / RECORDS_PER_BATCH) + 1;
         std::cout << "There is " << stock_count << " stock names to pull. " << std::endl;
         std::cout << "I'm going to spawn " << looper_spawn_count << " loopers to handle the load." << std::endl;
@@ -90,8 +90,8 @@ int main(int argc, const char * argv[]) {
             // Establish DB Connection
             pqxx::result R = W.exec(query_app_preferences);
             W.commit();
-            
-            // Let's SET engine_status
+
+            // Let's GET engine_status
             engine_status = R[0]["engine_status"].as<bool>();
             std::cout << "Engine Status:" << engine_status << std::endl;
         };
