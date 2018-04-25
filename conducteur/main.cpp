@@ -10,6 +10,7 @@
 #include <pqxx/pqxx>
 #include <thread>
 #include <chrono>
+#include <unistd.h>
 
 int main(int argc, const char * argv[]) {
     
@@ -18,6 +19,7 @@ int main(int argc, const char * argv[]) {
     bool engine_status = false;
     int pull_interval = 0;
     int stock_count = 0;
+    int PID = getpid();
     
     // Connect to DB and pull variables
     // Establish DB Connection
@@ -39,23 +41,26 @@ int main(int argc, const char * argv[]) {
     // Let's figure out how many looper to spawn
     // make sure we have stocks to pull
     if (stock_count > 0) {
-        int looper_spawn_count = (stock_count / RECORDS_PER_BATCH) + 1;
+        int sooper_spawn_count = (stock_count / RECORDS_PER_BATCH) + 1;
         std::cout << "There is " << stock_count << " stock names to pull. " << std::endl;
-        std::cout << "I'm going to spawn " << looper_spawn_count << " loopers to handle the load." << std::endl;
+        std::cout << "I'm going to spawn " << sooper_spawn_count << " scoopers to handle the load." << std::endl;
         
-        // spawn the loopers
-        for (int i=1; i <= looper_spawn_count; i++) {
-            system("looper");
-            std::cout << "looper " << i << " launched " << std::endl;
+        // spawn the scoopers
+        // Create scooper call string with PID for system call
+        std::string e = "scooper " + std::to_string(PID);
+        const char *  scooper_call = e.c_str();
+        for (int i=1; i <= sooper_spawn_count; i++) {
+            std::system(scooper_call);
+            std::cout << "scooper " << i << " launched " << scooper_call << std::endl;
         }
         
         // Let's start the timer
         auto start_scooping = std::chrono::time_point_cast<std::chrono::milliseconds>(std::chrono::system_clock::now());
         
         // Let's start populating records in the queue for the looper slaves
-        std::string scoop_stocks ="UPDATE stock_names set scoop = true";
-//        pqxx::connection C{CONN_STRING};
-//        pqxx::work W{C};
+        std::string scoop_stocks ="UPDATE stock_symbols set scoop = true";
+        pqxx::connection C{CONN_STRING};
+        pqxx::work W{C};
         W.exec(scoop_stocks);
         W.commit();
         
@@ -81,7 +86,7 @@ int main(int argc, const char * argv[]) {
             
             // Let's enable records in the queue for the looper slaves
 //            pqxx::connection C{CONN_STRING};
-//            pqxx::work W{C};
+//            pqxx::work W{C}; 
             W.exec(scoop_stocks);
             W.commit();
     
