@@ -50,7 +50,8 @@ int main(int argc, const char * argv[]) {
         std::string e = "scooper " + std::to_string(PID);
         const char *  scooper_call = e.c_str();
         for (int i=1; i <= sooper_spawn_count; i++) {
-            std::system(scooper_call);
+//            std::system(scooper_call);
+            popen(scooper_call, "r"); 
             std::cout << "scooper " << i << " launched " << scooper_call << std::endl;
         }
         
