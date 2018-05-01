@@ -30,6 +30,7 @@
 		FDA3E6792076B9C100ECE17C /* libpqxx-4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libpqxx-4.0.dylib"; path = "../../../../../usr/local/Cellar/libpqxx/4.0.1_2/lib/libpqxx-4.0.dylib"; sourceTree = "<group>"; };
 		FDA3E67B2076F48400ECE17C /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		FDA3E67D2076F55A00ECE17C /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		FDC85AD12097DCC500A7D7ED /* conducteur.profdata */ = {isa = PBXFileReference; lastKnownFileType = file; path = conducteur.profdata; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +51,7 @@
 				FDA3E6702076B41600ECE17C /* conducteur */,
 				FDA3E66F2076B41600ECE17C /* Products */,
 				FDA3E6782076B9C100ECE17C /* Frameworks */,
+				FDC85AD02097DCC500A7D7ED /* OptimizationProfiles */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,6 +79,14 @@
 				FDA3E6792076B9C100ECE17C /* libpqxx-4.0.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FDC85AD02097DCC500A7D7ED /* OptimizationProfiles */ = {
+			isa = PBXGroup;
+			children = (
+				FDC85AD12097DCC500A7D7ED /* conducteur.profdata */,
+			);
+			path = OptimizationProfiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +260,7 @@
 		FDA3E6762076B41600ECE17C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XQDSL8AWB6;
 				HEADER_SEARCH_PATHS = /usr/local/Cellar/libpqxx/4.0.1_2/include/;
@@ -264,6 +275,7 @@
 		FDA3E6772076B41600ECE17C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XQDSL8AWB6;
 				HEADER_SEARCH_PATHS = /usr/local/Cellar/libpqxx/4.0.1_2/include/;
