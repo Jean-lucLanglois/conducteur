@@ -69,7 +69,7 @@ int main(int argc, const char * argv[]) {
     bool engine_status = false;
     int pull_interval = 0;
     int stock_count = 0;
-    char * PID = (char *)getpid;
+    // char * PID = (char *)getpid;
     
     // Connect to DB and pull app preferences
     if(set_app_preferences(engine_status, pull_interval, stock_count)){
