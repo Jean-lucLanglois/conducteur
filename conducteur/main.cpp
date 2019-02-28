@@ -14,6 +14,7 @@
 #include <string>
 #include <errno.h>
 #include <cstdlib>
+#include <cstring>
 
 // Get current date/time, format is YYYY-MM-DD.HH:mm:ss
 const std::string currentDateTime() {
