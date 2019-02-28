@@ -31,7 +31,7 @@ const std::string currentDateTime() {
 // Build the connection string from the environment variables
 const std::string getConnectionString() {
     const char* db_host = std::getenv("DB_HOST");
-    if(strlen(db_host) == 0 ){
+    if(std::strlen(db_host) == 0 ){
         std::cout << "ERROR! DB_HOST Environment Variables is empty" << std::endl;
         std::cout << "CAnnot continue, exiting" << std::endl;
         exit (EXIT_FAILURE);
@@ -39,7 +39,7 @@ const std::string getConnectionString() {
         //std::cout << "Environment DB_HOST = " << db_host << std::endl;
     }
     const char* db_name = std::getenv("DB_NAME");
-    if(strlen(db_name) == 0 ){
+    if(std::strlen(db_name) == 0 ){
         std::cout << "ERROR! DB_NAME Environment Variables is empty" << std::endl;
         std::cout << "CAnnot continue, exiting" << std::endl;
         exit (EXIT_FAILURE);
@@ -47,7 +47,7 @@ const std::string getConnectionString() {
         //std::cout << "Environment DB_NAME = " << db_name << std::endl;
     }
     const char* db_user = std::getenv("DB_USERNAME");
-    if(strlen(db_user) == 0 ){
+    if(std::strlen(db_user) == 0 ){
         std::cout << "ERROR! DB_USERNAME Environment Variables is empty" << std::endl;
         std::cout << "CAnnot continue, exiting" << std::endl;
         exit (EXIT_FAILURE);
