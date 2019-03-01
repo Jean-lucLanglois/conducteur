@@ -39,9 +39,9 @@ const std::string getConnectionString() {
     }else{
         //std::cout << "Environment DB_HOST = " << db_host << std::endl;
     }
-    const char* db_name = std::getenv("DB_NAME");
-    if(std::strlen(db_name) == 0 ){
-        std::cout << "ERROR! DB_NAME Environment Variables is empty" << std::endl;
+    const char* db_database = std::getenv("DB_DATABASE");
+    if(std::strlen(db_database) == 0 ){
+        std::cout << "ERROR! DB_DATABASE Environment Variables is empty" << std::endl;
         std::cout << "CAnnot continue, exiting" << std::endl;
         exit (EXIT_FAILURE);
     }else{
@@ -58,15 +58,15 @@ const std::string getConnectionString() {
     const char* db_password = std::getenv("DB_PASSWORD");
     
     
-    
+    /// Form the connection string
     std::string con = "host= ";
-    con.append(std::getenv("DB_HOST"));
+    con.append(db_host);
     con.append(" dbname=");
-    con.append(std::getenv("DB_NAME"));
+    con.append(db_database);
     con.append(" user=");
-    con.append(std::getenv("DB_USERNAME"));
+    con.append(db_user);
     con.append(" password=");
-    con.append(std::getenv("DB_PASSWORD"));
+    con.append(db_password);
     
     return con;
 }
