@@ -31,44 +31,58 @@ const std::string currentDateTime() {
 
 // Build the connection string from the environment variables
 const std::string getConnectionString() {
-    const char* db_host = std::getenv("DB_HOST");
-    if(std::strlen(db_host) == 0 ){
-        std::cout << "ERROR! DB_HOST Environment Variables is empty" << std::endl;
-        std::cout << "CAnnot continue, exiting" << std::endl;
-        exit (EXIT_FAILURE);
-    }else{
-        //std::cout << "Environment DB_HOST = " << db_host << std::endl;
-    }
-    const char* db_database = std::getenv("DB_DATABASE");
-    if(std::strlen(db_database) == 0 ){
-        std::cout << "ERROR! DB_DATABASE Environment Variables is empty" << std::endl;
-        std::cout << "CAnnot continue, exiting" << std::endl;
-        exit (EXIT_FAILURE);
-    }else{
-        //std::cout << "Environment DB_NAME = " << db_name << std::endl;
-    }
-    const char* db_user = std::getenv("DB_USERNAME");
-    if(std::strlen(db_user) == 0 ){
-        std::cout << "ERROR! DB_USERNAME Environment Variables is empty" << std::endl;
-        std::cout << "CAnnot continue, exiting" << std::endl;
-        exit (EXIT_FAILURE);
-    }else{
-        //std::cout << "Environment DB_USERNAME = " << db_user << std::endl;
-    }
-    const char* db_password = std::getenv("DB_PASSWORD");
     
+    try {
+        // Try to get DB_HOST ENV Variable
+        const char* db_host = std::getenv("DB_HOST");
+        if(std::strlen(db_host) == 0 ){
+            std::cout << "ERROR! DB_HOST Environment Variables is empty" << std::endl;
+            std::cout << "CAnnot continue, exiting" << std::endl;
+            exit (EXIT_FAILURE);
+        }else{
+            //std::cout << "Environment DB_HOST = " << db_host << std::endl;
+        }
+ 
+        // Try to get DB_DATABASE ENV Variable
+        const char* db_database = std::getenv("DB_DATABASE");
+        if(std::strlen(db_database) == 0 ){
+            std::cout << "ERROR! DB_DATABASE Environment Variables is empty" << std::endl;
+            std::cout << "CAnnot continue, exiting" << std::endl;
+            exit (EXIT_FAILURE);
+        }else{
+            //std::cout << "Environment DB_NAME = " << db_name << std::endl;
+        }
+ 
+        // Try to get DB_USERNAME ENV Variable
+        const char* db_user = std::getenv("DB_USERNAME");
+        if(std::strlen(db_user) == 0 ){
+            std::cout << "ERROR! DB_USERNAME Environment Variables is empty" << std::endl;
+            std::cout << "CAnnot continue, exiting" << std::endl;
+            exit (EXIT_FAILURE);
+        }else{
+            //std::cout << "Environment DB_USERNAME = " << db_user << std::endl;
+        }
+ 
+        // Try to get DB_PASSWORD ENV Variable
+        const char* db_password = std::getenv("DB_PASSWORD");
+        
+        /// Form the connection string
+        std::string con = "host= ";
+        con.append(db_host);
+        con.append(" dbname=");
+        con.append(db_database);
+        con.append(" user=");
+        con.append(db_user);
+        con.append(" password=");
+        con.append(db_password);
+        
+        return con;
+        
+    } catch (const std::exception& e) {
+        std::cerr << e.what();
+    }
     
-    /// Form the connection string
-    std::string con = "host= ";
-    con.append(db_host);
-    con.append(" dbname=");
-    con.append(db_database);
-    con.append(" user=");
-    con.append(db_user);
-    con.append(" password=");
-    con.append(db_password);
-    
-    return con;
+    return "";
 }
 
 // Convert bool to string
